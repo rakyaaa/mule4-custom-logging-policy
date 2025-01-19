@@ -1,0 +1,29 @@
+id: Log Client Location
+name: Log Client Location
+description: Policy to Log the Client Location using Client IP Address.
+category: Logging Policy
+type: custom
+resourceLevelSupported: true
+encryptionSupported: false
+standalone: true
+supportedJavaVersions: ["8", "11", "17"]
+requiredCharacteristics: []
+providedCharacteristics: []
+configuration: 
+  - propertyName: clientIdLocationEnablement
+    name: Log Client Location
+    description: If this is enabled, then Client Location will be Logged
+    type: boolean
+    optional: true
+    defaultValue: false
+  - propertyName: ipAddress
+    name: Client IP Address
+    description: |
+      Mule Expression for extracting the Client IP Address e.g. #[attributes.headers.'x-forwarded-for']
+    type: expression
+    optional: false
+    defaultValue: #[attributes.headers.'x-forwarded-for']
+    dependsOnKey: clientIdLocationEnablement
+    dependsOnValue: true
+    allowMultiple: false
+    sensitive : false
